@@ -11,31 +11,42 @@ const Details: FC = () => {
     axios.get(`https://dummyjson.com/recipes/${id}`).then((res) => {
       setData(res.data);
     });
-  }, []);
-
-  console.log(data);
+  }, [id]);
 
   return (
-    <div className="container mt-10">
-      <div className="flex">
-        <div className="w-[50%]">
-          <img className="object-cover" src={data?.image} alt="" />
+    <div className="container mx-auto mt-10 mb-10 px-4">
+      <div className="flex flex-col lg:flex-row items-center gap-8">
+        {/* Image Section */}
+        <div className="w-full lg:w-[50%] rounded-lg overflow-hidden shadow-lg">
+          <img
+            className="w-full h-full object-cover rounded-lg transition-transform duration-500 transform hover:scale-105"
+            src={data?.image}
+            alt={data?.name}
+          />
         </div>
-        <div className="w-[50%] text-center content-center">
-          <h2 className="text-2xl font-bold">{data?.name}</h2>
-          <div>
-            <ul className="mt-4">
-              <span className="text-xl font-medium">Ingredients</span>
-              {data?.ingredients?.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-            <ul className="mt-4">
-              <span className="text-xl font-medium">Instructions</span>
-              {data?.instructions?.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
+
+        {/* Details Section */}
+        <div className="w-full lg:w-[50%] text-center lg:text-left">
+          <h2 className="text-3xl font-bold text-gray-800">{data?.name}</h2>
+
+          <div className="mt-6">
+            <div>
+              <span className="text-xl font-semibold text-gray-700">Ingredients</span>
+              <ul className="list-disc ml-6 mt-2 text-gray-600">
+                {data?.ingredients?.map((ingredient, index) => (
+                  <li key={index} className="mt-1">{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6">
+              <span className="text-xl font-semibold text-gray-700">Instructions</span>
+              <ul className="list-decimal ml-6 mt-2 text-gray-600">
+                {data?.instructions?.map((instruction, index) => (
+                  <li key={index} className="mt-1">{instruction}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
