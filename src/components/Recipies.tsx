@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { savedRecept } from "../redux/slices/saved-slices";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // data fetching uchun axios kutubxonasini import qilamiz
 
 interface IRecipiesProps {
   recepies: IRecipes[] | null;
